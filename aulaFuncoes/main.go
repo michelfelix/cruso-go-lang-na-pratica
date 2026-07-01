@@ -10,10 +10,10 @@ func isDivisibleBy2(num1, num2 float64) (float64, error) {
 	return num1 / num2, nil
 }
 
-//Named return 
+//Named return
 func calculateRectngleParams(width, height float64) (area, perimeter float64) {
 	area = width * height
-	perimeter = 2* (width + height)
+	perimeter = 2 * (width + height)
 
 	return area, perimeter
 }
@@ -36,7 +36,7 @@ func operate(a, b int, operation func(int, int) int) int {
 	return operation(a, b)
 }
 
-func sum (a, b int) int {
+func sum(a, b int) int {
 	return a + b
 }
 
@@ -76,6 +76,7 @@ func makeIDGenerator() func() int {
 		return id
 	}
 }
+
 //Explicação breve sobre clojure, o valor permanece enquanto a aplicação entende que o valor vai ser utilizado, quem gerencia isso é o escape analysis.
 //Segue um fluxograma de como é o funcionamento desse gerenciamento entre stack, heap e escape analysis
 //Você declara uma variável
@@ -94,27 +95,32 @@ func makeIDGenerator() func() int {
 //              ▼
 //      Garbage Collector gerencia
 
+//Defer
+func getValue() int {
+	fmt.Println("chamando getValue()")
+	return 42
+}
 func main() {
 	//Início impressão função multiplos retornos
 	var result1, err1 = isDivisibleBy2(10, 7)
 	if err1 != nil {
 		fmt.Println(err1)
-	}else {
+	} else {
 		fmt.Println(result1)
 	}
 
 	//Fim impressão função multiplos retornos
 
 	//Início impressão named return
-	
+
 	var area, perimeter = calculateRectngleParams(10, 5)
 	fmt.Println("Área do retângulo: ", area)
 	fmt.Println("Perímetro do retângulo: ", perimeter)
-	
+
 	//Fim impressão named return
 
 	//Início impressão função anônima
-	
+
 	var double = getMultiplier(2)
 
 	fmt.Println("Resultado da multiplicação: ", mult(10, 5))
@@ -125,14 +131,14 @@ func main() {
 	//Fim impressão função anônima
 
 	//Início impressão valores variádicos
-	
+
 	nums := []int{1, 2, 3, 4, 5}
 	fmt.Println(sumAll(nums...))
 	printWithPrefix("Michel diz: ", "Oi", "Eu sou o Michel", "Prazer em conhecer!")
 	//Fim impressão valores variádicos
 
 	//Início impressão closures
-	
+
 	idGen1 := makeIDGenerator()
 	idGen2 := makeIDGenerator()
 	fmt.Println("ID1: ", idGen1())
@@ -140,4 +146,9 @@ func main() {
 	fmt.Println("Novo ID1: ", idGen1())
 	fmt.Println("Novo ID2: ", idGen2())
 	//Fim impressão closures
+
+	//Início impressão defer
+	defer fmt.Println("Valor obtido", getValue()) // O defer é utilizado para adiar a execução de uma função até que a função que a chamou retorne. No caso, o getValue() será chamado imediatamente e seu valor armazenado no momento do seu retorno, mas o fmt.Println só será executado no final da função main.
+	fmt.Println("Função main retornando")
+	//Fim impressão defer
 }
