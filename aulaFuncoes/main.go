@@ -67,6 +67,33 @@ func printWithPrefix(prefix string, msgs ...string) { //Aqui podemos observar qu
 	}
 }
 
+//Closures
+func makeIDGenerator() func() int {
+	id := 0
+
+	return func() int {
+		id++
+		return id
+	}
+}
+//Explicação breve sobre clojure, o valor permanece enquanto a aplicação entende que o valor vai ser utilizado, quem gerencia isso é o escape analysis.
+//Segue um fluxograma de como é o funcionamento desse gerenciamento entre stack, heap e escape analysis
+//Você declara uma variável
+//        │
+//        ▼
+//
+//Compilador faz Escape Analysis
+//        │
+//   ┌────┴─────┐
+//   │          │
+//  Não		 Escapa
+// escapa		|
+//   │          │
+//  Stack      Heap
+//              │
+//              ▼
+//      Garbage Collector gerencia
+
 func main() {
 	//Início impressão função multiplos retornos
 	var result1, err1 = isDivisibleBy2(10, 7)
@@ -103,4 +130,14 @@ func main() {
 	fmt.Println(sumAll(nums...))
 	printWithPrefix("Michel diz: ", "Oi", "Eu sou o Michel", "Prazer em conhecer!")
 	//Fim impressão valores variádicos
+
+	//Início impressão closures
+	
+	idGen1 := makeIDGenerator()
+	idGen2 := makeIDGenerator()
+	fmt.Println("ID1: ", idGen1())
+	fmt.Println("ID2: ", idGen2())
+	fmt.Println("Novo ID1: ", idGen1())
+	fmt.Println("Novo ID2: ", idGen2())
+	//Fim impressão closures
 }
