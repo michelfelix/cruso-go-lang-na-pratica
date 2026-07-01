@@ -18,6 +18,13 @@ func calculateRectngleParams(width, height float64) (area, perimeter float64) {
 	return area, perimeter
 }
 
+//Naked return
+func calculateRectangleParams(width, height float64) (area, perimeter float64) {
+	area = width * height
+	perimeter = 2 * (width + height)
+	return
+}
+
 func main() {
 	//Início impressão função multiplos retornos
 	var result1, err1 = isDivisibleBy2(10, 7)
@@ -26,7 +33,7 @@ func main() {
 	}else {
 		fmt.Println(result1)
 	}
-	
+
 	//Fim impressão função multiplos retornos
 
 	//Início impressão named return
