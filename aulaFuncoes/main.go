@@ -151,4 +151,21 @@ func main() {
 	defer fmt.Println("Valor obtido", getValue()) // O defer é utilizado para adiar a execução de uma função até que a função que a chamou retorne. No caso, o getValue() será chamado imediatamente e seu valor armazenado no momento do seu retorno, mas o fmt.Println só será executado no final da função main.
 	fmt.Println("Função main retornando")
 	//Fim impressão defer
+
+	//Início impressão panic e recover
+
+	defer func() {
+		r := recover()
+
+		if r != nil {
+			fmt.Println("Recuperado do panic: ", r) //Este é o momento que temos para finalizar nosso programa caso o panic alerte algum problema,podendo encerrar conexões, dar alertas ou até mesmo salvar dados em um banco de dados, etc.
+		}
+	}()
+
+	fmt.Println("Antes do panic")
+	defer fmt.Println("Defer ainda é retornado mesmo após o panic") //Nesse exemplo de defer, percebemos que ele é "last in first out", ou seja, ele é executado na ordem inversa da sua declaração
+	panic("Ocorreu um erro inesperado!")                            //O panic para a aplicação e o código abaixo dele não sera executado.
+	fmt.Println("Esse código nunca será executado")
+
+	//Fim impressão panic e recover
 }
