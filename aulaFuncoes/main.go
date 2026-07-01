@@ -10,6 +10,14 @@ func isDivisibleBy2(num1, num2 float64) (float64, error) {
 	return num1 / num2, nil
 }
 
+//Named return 
+func calculateRectngleParams(width, height float64) (area, perimeter float64) {
+	area = width * height
+	perimeter = 2* (width + height)
+
+	return area, perimeter
+}
+
 func main() {
 	//Início impressão função multiplos retornos
 	var result1, err1 = isDivisibleBy2(10, 7)
@@ -18,7 +26,14 @@ func main() {
 	}else {
 		fmt.Println(result1)
 	}
-
-	fmt.Println("Vamos começar a estudar funções em Go!")
+	
 	//Fim impressão função multiplos retornos
+
+	//Início impressão named return
+	
+	var area, perimeter = calculateRectngleParams(10, 5)
+	fmt.Println("Área do retângulo: ", area)
+	fmt.Println("Perímetro do retângulo: ", perimeter)
+	
+	//Fim impressão named return
 }
