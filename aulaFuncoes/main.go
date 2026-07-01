@@ -50,6 +50,23 @@ func getMultiplier(factor int) func(int) int {
 	}
 }
 
+//Parâmetros variádicos
+func sumAll(nums ...int) int {
+	sum := 0
+
+	for _, num := range nums {
+		sum += num
+	}
+
+	return sum
+}
+
+func printWithPrefix(prefix string, msgs ...string) {
+	for _, msg := range msgs {
+		fmt.Println(prefix, msg)
+	}
+}
+
 func main() {
 	//Início impressão função multiplos retornos
 	var result1, err1 = isDivisibleBy2(10, 7)
@@ -79,4 +96,11 @@ func main() {
 	fmt.Println("Resultado da duplicação: ", double(10))
 
 	//Fim impressão função anônima
+
+	//Início impressão valores variádicos
+	
+	nums := []int{1, 2, 3, 4, 5}
+	fmt.Println(sumAll(nums...))
+	printWithPrefix("Michel diz: ", "Oi", "Eu sou o Michel", "Prazer em conhecer!")
+	//Fim impressão valores variádicos
 }
