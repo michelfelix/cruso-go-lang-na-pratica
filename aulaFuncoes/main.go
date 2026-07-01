@@ -32,6 +32,18 @@ var mult = func(a, b int) int {
 	return a * b
 }
 
+func operate(a, b int, operation func(int, int) int) int {
+	return operation(a, b)
+}
+
+func sum (a, b int) int {
+	return a + b
+}
+
+func sub(a, b int) int {
+	return a - b
+}
+
 func main() {
 	//Início impressão função multiplos retornos
 	var result1, err1 = isDivisibleBy2(10, 7)
@@ -54,6 +66,8 @@ func main() {
 	//Início impressão função anônima
 	
 	fmt.Println("Resultado da multiplicação: ", mult(10, 5))
-	
+	fmt.Println("Resultado da soma: ", operate(10, 5, sum))
+	fmt.Println("Resultado da subtração: ", operate(10, 5, sub))
+
 	//Fim impressão função anônima
 }
