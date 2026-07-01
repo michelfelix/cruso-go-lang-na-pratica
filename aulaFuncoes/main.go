@@ -44,6 +44,12 @@ func sub(a, b int) int {
 	return a - b
 }
 
+func getMultiplier(factor int) func(int) int {
+	return func(x int) int {
+		return x * factor
+	}
+}
+
 func main() {
 	//Início impressão função multiplos retornos
 	var result1, err1 = isDivisibleBy2(10, 7)
@@ -65,9 +71,12 @@ func main() {
 
 	//Início impressão função anônima
 	
+	var double = getMultiplier(2)
+
 	fmt.Println("Resultado da multiplicação: ", mult(10, 5))
 	fmt.Println("Resultado da soma: ", operate(10, 5, sum))
 	fmt.Println("Resultado da subtração: ", operate(10, 5, sub))
+	fmt.Println("Resultado da duplicação: ", double(10))
 
 	//Fim impressão função anônima
 }
