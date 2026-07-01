@@ -18,11 +18,18 @@ func calculateRectngleParams(width, height float64) (area, perimeter float64) {
 	return area, perimeter
 }
 
-//Naked return
-func calculateRectangleParams(width, height float64) (area, perimeter float64) {
-	area = width * height
-	perimeter = 2 * (width + height)
-	return
+//Naked return - Como pode ser observado, basicamente naked return não especifica o que vai ser o retorno porque fica subentendido devido ao atribuir o tipo e valor ao parâmetro de area e perímetro
+// func calculateRectangleParams(width, height float64) (area, perimeter float64) {
+// 	area = width * height
+// 	perimeter = 2 * (width + height)
+// 	return
+// }
+
+//Função anônima
+//Função em Go é um valor de primeira classe, como uma string, int, etc. Isso significa que você pode atribuir uma função a uma variável, passá-la como argumento para outra função e retorná-la de outra função.
+//Uma função anônima é uma função sem nome, que pode ser definida e chamada em tempo de execução.
+var mult = func(a, b int) int {
+	return a * b
 }
 
 func main() {
@@ -43,4 +50,10 @@ func main() {
 	fmt.Println("Perímetro do retângulo: ", perimeter)
 	
 	//Fim impressão named return
+
+	//Início impressão função anônima
+	
+	fmt.Println("Resultado da multiplicação: ", mult(10, 5))
+	
+	//Fim impressão função anônima
 }
