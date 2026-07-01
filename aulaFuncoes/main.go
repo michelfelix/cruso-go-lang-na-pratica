@@ -61,7 +61,7 @@ func sumAll(nums ...int) int {
 	return sum
 }
 
-func printWithPrefix(prefix string, msgs ...string) {
+func printWithPrefix(prefix string, msgs ...string) { //Aqui podemos observar que o valor variádico é o último parâmetro da função
 	for _, msg := range msgs {
 		fmt.Println(prefix, msg)
 	}
