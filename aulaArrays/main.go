@@ -2,6 +2,16 @@ package main
 
 import "fmt"
 
+func modifyArray(arr [3]int) {
+	arr[0] = 9
+	fmt.Println(arr)
+}
+
+func modifySlice(slc []int) {
+	slc[0] = 9
+	fmt.Println(slc)
+}
+
 func main() {
 	//Maneiras de declarar arrays
 	var arr [3]int             //Aqui vemos o "[3]" que indica que tem um array de tamanho 3, nem mais, nem menos e não pode ser alterado(obs: o tamanho do array é parte do seu tipo)
@@ -18,14 +28,14 @@ func main() {
 	// pois o índice começa em 0, então, para acessar o último elemento do array, é necessário subtrair 1 do tamanho do array. Vide exemplo abaixo:
 	var arr6 = [4]int{1, 2, 3, 4}
 	arr6[3] = 9 //Aqui estou acessando o último elemento do array, que é o índice 3, e atribuindo o valor 9 a ele
-
+	fmt.Println("<-- Início de declarações de arrays -->")
 	fmt.Println(arr)
 	fmt.Println(arr2)
 	fmt.Println(arr3)
 	fmt.Printf("%T\n", arr4) //Essa impressão retorna o tipo [3]int, que é o tipo e tamanho do array, ou seja, o tamanho do array é parte do seu tipo
 	fmt.Printf("%T\n", arr5) //Essa impressão retorna o tipo [4]int, que é o tipo e tamanho do array, ou seja, o tamanho do array é parte do seu tipo
 	fmt.Println(arr6)
-
+	fmt.Println("<-- Fim de declarações de arrays -->")
 	//Início matriz
 	var matrix [3][3]int
 
@@ -41,11 +51,43 @@ func main() {
 	matrix[2][1] = 8
 	matrix[2][2] = 9
 
+	fmt.Println("<-- Início de matrizes -->")
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 3; j++ {
 			fmt.Print(matrix[i][j], " ")
 		}
 		fmt.Println()
 	}
+	fmt.Println("<-- Fim de matrizes -->")
 	//Fim matriz
+
+	//Início passagem de array como valor
+
+	foo1 := [3]int{1, 2, 3}
+
+	fmt.Println("<-- Início de passagem de array como valor -->")
+
+	fmt.Println(foo1)
+
+	modifyArray(foo1) //Aqui estamos passando o array como valor, ou seja, uma cópia do array é passada para a função, então, qualquer alteração feita na função não afetará o array original
+
+	fmt.Println(foo1) //Aqui vemos que o array original não foi alterado, pois a função modifyArray recebeu uma cópia do array foo, então, qualquer alteração feita na função não afetará o array original
+
+	fmt.Println("<-- Fim de passagem de array como valor -->")
+	//Fim passagem de array como valor
+
+	//Início passagem de array como referência
+
+	foo2 := []int{1, 2, 3}
+
+	fmt.Println("<-- Início de passagem de array como referência -->")
+
+	fmt.Println(foo2)
+
+	modifySlice(foo2) //Aqui estamos passando o array como referência, ou seja, a referência do array é passada para a função, então, qualquer alteração feita na função afetará o array original
+
+	fmt.Println(foo2) //Aqui vemos que o array original foi alterado, pois a função modifySlice recebeu a referência do array foo, então, qualquer alteração feita na função afetará o array original
+
+	fmt.Println("<-- Fim de passagem de array como referência -->")
+	//Fim passagem de array como referência
 }
