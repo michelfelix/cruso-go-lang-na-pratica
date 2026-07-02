@@ -25,4 +25,27 @@ func main() {
 	fmt.Printf("%T\n", arr4) //Essa impressão retorna o tipo [3]int, que é o tipo e tamanho do array, ou seja, o tamanho do array é parte do seu tipo
 	fmt.Printf("%T\n", arr5) //Essa impressão retorna o tipo [4]int, que é o tipo e tamanho do array, ou seja, o tamanho do array é parte do seu tipo
 	fmt.Println(arr6)
+
+	//Início matriz
+	var matrix [3][3]int
+
+	matrix[0][0] = 1
+	matrix[0][1] = 2
+	matrix[0][2] = 3
+
+	matrix[1][0] = 4
+	matrix[1][1] = 5
+	matrix[1][2] = 6
+
+	matrix[2][0] = 7
+	matrix[2][1] = 8
+	matrix[2][2] = 9
+
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			fmt.Print(matrix[i][j], " ")
+		}
+		fmt.Println()
+	}
+	//Fim matriz
 }
