@@ -90,4 +90,43 @@ func main() {
 
 	fmt.Println("<-- Fim de passagem de array como referência -->")
 	//Fim passagem de array como referência
+
+	//OBS: Em golang não existe passagem de array como referência, isso é uma maneira de falar para facilitar o entendimento, em go tudo é valor.
+	//Para fechar o comentario de arrays, vou postrar uma breve explicação sobre como slices funcionam por trás dos panos e passar um exemplo.
+
+	//Slices em go possuem 3 informações, pointer(prt), length(len) e capacity(cap), o ponteiro aponta para o primeiro elemento do slice, a length é o tamanho do slice e a capacity é a capacidade do slice, ou seja, quantos elementos ele pode armazenar antes de precisar alocar mais memória.
+
+	// Slice
+	// +-----------------------------+
+	// | ptr | len = 4 | cap = 4     |
+	// +--|--------------------------+
+	// |
+	// ▼
+	// Array
+	// +----+----+----+----+
+	// | 10 | 20 | 30 | 40 |
+	// +----+----+----+----+
+
+	//Para finalizar, o exemplo que comentei que iria utilizar.
+
+	arr7 := [5]int{1, 2, 3, 4, 5}
+
+	slice := arr7[1:4] //O slice aponta para o primeiro elemento do trecho que ele representa, não necessariamente para o início do array.
+
+	//Fica assim na memória:
+	// arr7
+	// +---+---+---+---+---+
+	// | 1 | 2 | 3 | 4 | 5 |
+	// +---+---+---+---+---+
+	// 		 ▲
+	// 		 │
+	// Slice |
+	// ptr ──┘
+	// len = 3
+	// cap = 4
+
+	slice[0] = 100
+
+	fmt.Println(arr7)
+	fmt.Println(slice)
 }
